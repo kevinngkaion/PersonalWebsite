@@ -1,0 +1,167 @@
+-- NEED TO SET THIS ON THE LIVE SERVER DB
+SET GLOBAL information_schema_stats_expiry=0;
+
+CREATE TABLE person(
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	type VARCHAR(7) NOT NULL,
+	fname VARCHAR(20) NOT NULL,
+	lname VARCHAR(20) NOT NULL,
+	phone VARCHAR(10) NOT NULL,
+	email VARCHAR(40) NOT NULL,
+	home_address VARCHAR(255) NOT NULL,
+	CONSTRAINT person_chk_type CHECK (type IN ('student', 'coach', 'parent'))
+);
+
+CREATE TABLE student(
+	id INT PRIMARY KEY,
+	dob DATE NOT NULL,
+	school VARCHAR(50) NOT NULL,
+	photo VARCHAR(255) NOT NULL,
+	grade VARCHAR(2) NOT NULL,
+	program_id INT NOT NULL,
+	CONSTRAINT student_chk_grade CHECK (grade IN ('k', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'u'));
+);
+
+ALTER TABLE student 
+ADD CONSTRAINT student_id_fk FOREIGN KEY(id)
+								REFERENCES person(id);
+ALTER TABLE student
+ADD column parent1 INT NOT NULL
+ALTER TABLE student
+ADD column parent2 INT NOT NULL;
+ALTER TABLE student
+ADD CONSTRAINT student_p1_fk FOREIGN KEY (parent1) REFERENCES parent(id);
+ALTER TABLE student
+ADD CONSTRAINT student_p2_fk FOREIGN KEY (parent2) REFERENCES parent(id);
+
+
+CREATE TABLE parent(
+	id INT PRIMARY KEY,
+	relationship VARCHAR(6),
+	occupation VARCHAR(20),
+	CONSTRAINT parent_chk_rel CHECK (relationship IN ('father', 'mother')),
+	FOREIGN KEY (id) REFERENCES person(id)
+);
+
+CREATE TABLE coach(
+	id INT PRIMARY KEY,
+	salary DECIMAL NOT NULL,
+	years INT NOT NULL,
+	FOREIGN KEY (id) REFERENCES person(id)
+);
+
+CREATE table auth_users(
+	id INT PRIMARY KEY,
+	username VARCHAR(20) UNIQUE NOT NULL,
+	password VARCHAR(40) NOT NULL,
+	is_admin BOOLEAN NOT NULL,
+	FOREIGN KEY (id) REFERENCES person(id)
+);
+
+-- Inserting admin
+INSERT INTO person VALUES(
+	null,
+	'coach',
+	'Admin',
+	'Master',
+	'1234567890',
+	'admin@kevin.com',
+	'Planet Earth'
+);
+INSERT INTO auth_users VALUES (1, 'admin', SHA1('password'), true);
+
+select `id`, `is_admin` from `auth_users` where username = 'admin' and password = SHA1('password');
+
+-- Creating program table
+CREATE TABLE program(
+	id INT PRIMARY KEY,
+	name VARCHAR(40) NOT NULL,
+	cost DECIMAL NOT NULL
+);
+
+-- Add FK to student
+ALTER TABLE student
+ADD CONSTRAINT student_progId_fk
+FOREIGN KEY (program_id) REFERENCES program(id);
+
+-- Add status column to student table and add check constraint
+ALTER TABLE student
+ADD column status VARCHAR(8) NOT NULL;
+ALTER TABLE student
+ADD CONSTRAINT student_chk_status CHECK(status IN('active', 'pending', 'inactive'));
+
+-- Insert programs
+	INSERT INTO program VALUES (1, 'NYKE Elite Basketball Camp', 1000);
+	INSERT INTO program VALUES (2, 'Adodas Predator Soccer Academy', 999.99);
+	INSERT INTO program VALUES (3, 'Lion Woods Pro Golf Academy', 1200);
+	INSERT INTO program VALUES (4, 'Shaun Black School of Big Air', 850);
+
+-- Create student-parent
+CREATE TABLE student_parent(
+	parentID INT NOT NULL,
+	studentID INT NOT NULL,
+	CONSTRAINT stupar_parent_id_fk FOREIGN KEY (parentID) REFERENCES parent(id),
+	CONSTRAINT stupar_student_id_fk FOREIGN KEY (studentID) REFERENCES student(id)
+);
+
+INSERT INTO `person` (type, fname, lname, phone, email, home_address)
+VALUES ('coach', 'LeBron', 'James', 2306062323, 'lebronjames@nyke.com', 'Big mansion');
+
+INSERT INTO auth_users
+VALUES (2, 'lebron', SHA1('james'), false);
+
+SELECT p.*, s.dob, s.school, s.grade, s.program_id, p2.fname, pa.relationship
+FROM person p, student s, parent pa, person p2
+WHERE p.id = 3 and
+	p.id = s.id and pa.id = s.parent1 and
+	p2.id = s.parent1;
+
+SELECT p.id, p.fname, p.lname, p.phone, p.email, s.dob, s.school, s.photo, s.grade
+FROM person p, student s
+WHERE p.id = s.id AND p.id IN (s.id);
+
+UPDATE student SET status = 'active' WHERE id = 3;
+
+SELECT * FROM person WHERE id NOT IN(SELECT id FROM auth_users) ORDER BY id, type;
+
+INSERT INTO person VALUES (null, 'coach', 'Leo', 'Messi', '1010101010', 'goat@futbol.com');
+INSERT INTO person VALUES (null, 'coach', 'Shaun', 'White', '0987654321', 'imshaun@white.com'), (null, 'coach', 'Happy', 'Gilmore', '5555555555', 'joker@gilmore.com');
+
+CREATE VIEW table_constraints
+AS
+SELECT table_name, constraint_name, constraint_type
+FROM information_schema.table_constraints
+ORDER BY table_name;
+
+<--Modify the tables. Remove FK and PK. Add new PK column. link FK to new thing -->
+ALTER TABLE auth_users
+DROP CONSTRAINT auth_users_ibfk_1,
+DROP PRIMARY KEY,
+ADD column user_id INT PRIMARY KEY AUTO_INCREMENT,
+ADD CONSTRAINT auth_users_idfk FOREIGN KEY (id) REFERENCES person(id);
+
+ALTER TABLE student
+DROP CONSTRAINT student_id_fk;
+ALTER TABLE student
+DROP PRIMARY KEY;
+ALTER TABLE student
+ADD column stu_id INT PRIMARY KEY AUTO_INCREMENT,
+ADD CONSTRAINT student_id_fk FOREIGN KEY (id) REFERENCES person(id);
+
+ALTER TABLE parent
+DROP CONSTRAINT parent_ibfk_1,
+DROP PRIMARY KEY,
+ADD column parent_id INT PRIMARY KEY AUTO_INCREMENT,
+ADD CONSTRAINT parent_id_fk FOREIGN KEY (id) REFERENCES person(id);
+
+ALTER TABLE student
+DROP CONSTRAINT student_p1_fk,
+DROP CONSTRAINT student_p2_fk,
+ADD CONSTRAINT stu_p1_fk FOREIGN KEY (parent1) REFERENCES parent(parent_id),
+ADD CONSTRAINT stu_p2_fk FOREIGN KEY (parent2) REFERENCES parent(parent_id);
+
+CREATE TABLE stu_par(
+stu_id INT NOT NULL,
+par_id INT NOT NULL,
+FOREIGN KEY (stu_id) REFERENCES student(stu_id),
+FOREIGN KEY (par_id) REFERENCES parent(parent_id));
