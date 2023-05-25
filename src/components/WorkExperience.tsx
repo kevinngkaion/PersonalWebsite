@@ -1,6 +1,6 @@
 export default function WorkExperience() {
     return (
-        <section id="work">
+        <section id="work" className="">
             <div className="container-lg p-3">
                 <h1>
                     <div className="display-2 text-info-emphasis text-center">Work Experience</div>
