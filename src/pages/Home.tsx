@@ -7,9 +7,9 @@ export default function Home() {
     return (
         <div className="home">
             <Navbar/>
-            <AboutMe/>
+            {/* <AboutMe/>
             <Skills/>
-            <Education/>
+            <Education/> */}
             <WorkExperience/>
         </div>
     )

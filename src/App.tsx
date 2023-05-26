@@ -1,4 +1,3 @@
-import './css/App.css'
 import {
   createBrowserRouter,
   Routes,
