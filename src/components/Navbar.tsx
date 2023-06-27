@@ -22,19 +22,16 @@ import Resume from '../assets/KevinNgkaionResume.pdf';
                         <a href="#projects" className="nav-link text-info">Projects</a>
                     </li>
                     <li className="navbar-item">
-                        <a href="#work" className="nav-link text-info">Work Experience</a>
-                    </li>
-                    <li className="navbar-item">
                         <a href="#education" className="nav-link text-info">Education</a>
                     </li>
                     <li className="navbar-item">
                         <a href={Resume} target="_blank" className="nav-link text-info">Resume</a>
                     </li>
                     <li className="navbar-item d-md-none">
-                        <a href="#contact" className="nav-link text-info">Contact</a>
+                        <a href="https://www.linkedin.com/in/kevinngkaion/" target="_blank" className="nav-link text-info">Contact</a>
                     </li>
                     <li className="navbar-item ms-2 d-none d-md-inline">
-                        <a href="#contact" className="btn btn-info">Contact</a>
+                        <a href="https://www.linkedin.com/in/kevinngkaion/" target="_blank" className="btn btn-secondary">Contact</a>
                     </li>
                 </ul>
 

@@ -24,7 +24,7 @@ export default function Projects() {
         <section id="projects" className="projects">
             <div className="container-lg p-3">
                 <h1>
-                    <div className="display-2 text-info-emphasis text-center">Projects</div>
+                    <div className="display-2 text-info-emphasis text-center mb-4">Projects</div>
                 </h1>
 
                 <div className="accordion" id="accordionProjects">
@@ -54,7 +54,7 @@ export default function Projects() {
                                         <p className="card-text text-justify">
                                             The capstone project of my CIS Diploma. My team built a daily task management system for the Historic O'Keefe Ranch. The system keeps track of tasks and who they are assigned to, as well as task status and completion dates. It also sends an email to the user whenever a task is assigned to them and generates new tasks automatically for recurring tasks
                                         </p>
-                                        <a href="https://github.com/kevinngkaion/OkeefeProject" target="_blank" className="btn btn-info d-flex w-50 mx-auto justify-content-around">
+                                        <a href="https://github.com/kevinngkaion/OkeefeProject" target="_blank" className="btn btn-secondary d-flex w-50 mx-auto justify-content-around">
                                             <img src={github} alt="github logo" height={30}/>
                                             <span>View Source Code</span>
                                         </a>
