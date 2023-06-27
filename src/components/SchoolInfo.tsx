@@ -1,6 +1,6 @@
 export default function SchoolInfo({logo, degree, school, year}: {logo: string; degree: string; school: string; year: string}) {
     return (
-        <div className="container" style={{marginTop: 20}}>
+        <div className="container schoolInfo" style={{marginTop: 20}}>
             <div className="container d-flex flex-column justify-content-between h-100 text-light">
                 <div className="container d-flex flex-grow-1">
                     <img className="img-fluid m-auto" src={logo} alt="Okanagan College Logo" style={{maxHeight: 200}}/>

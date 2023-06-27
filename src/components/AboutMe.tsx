@@ -1,4 +1,5 @@
 import myPortrait from "../assets/images/portrait.jpg";
+import github from "../assets/images/github.svg";
 
 export default function AboutMe() {
     return (
@@ -9,9 +10,13 @@ export default function AboutMe() {
                      <h1 className="">
                         <div className="display-2 text-info-emphasis">About Me</div>
                     </h1>
-                    <p className="lead my-4 text-light">An enthusiastic and reliable software developer with a passion for programming. On my final semester as a CIS Diploma student and have worked on programming technologies in both full-stack and backend focused applications using Java and LAMP. Furthermore, I am a global citizen with exceptional people skills, able to communicate in multiple languages including English, Filipino, Mandarin, and Bahasa Indonesia.
+                    <p className="lead my-4 text-light">
+                        An enthusiastic and reliable software developer with a passion for programming. I have worked on programming technologies in both full-stack and backend focused applications using Java, Django, Express.js and LAMP.
                     </p>
-                    <a href="#Resume" className="btn btn-secondary btn-lg">View My Resume</a>
+                    <a href="https://github.com/kevinngkaion" target="_blank" className="btn btn-secondary btn-lg">
+                        <img src={github} alt="github logo" height={30}/>
+                        <span className="ps-4">View My GitHub</span>
+                    </a>
                 </div>
                 <div className="col-md-5 text-center d-none d-md-block">
                     <img src={myPortrait} alt="portrait" className="img-fluid rounded-5" height="100%" width="300px"/>

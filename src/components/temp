@@ -1,0 +1,39 @@
+<div className="accordion my-3" id="accordionProjects">
+                    {/* <!-- OKeefe Ranch --> */}
+                    <div className="accordion-item text-light pb-5">
+                        <h2 className="accordion-header" id="projects-okeefeHeading">
+                            <button className="accordion-button text-light collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#projects-okeefeContent" aria-expanded="false" aria-controls="projects-okeefeContent">
+                                <div className="fs-5">Okeefe Ranch - Task Management System</div>
+                            </button>
+                        </h2>
+                        <div id="projects-okeefeContent" className="accordion collapse" aria-labelledby="projects-okeefeHeading">
+                            <div className="accordion-body">
+                                <div className="d-flex gap-2 flex-wrap flex-md-nowrap">
+                                    {/* Left Card with Video and Icons */}
+                                    <div className="okeefeDemo card border border-0" style={{width: "50rem"}}>
+                                        <YoutubeEmbed embedID={embedID}/>
+                                        <div className="card-body">
+                                            <div className="d-flex justify-content-around flex-wrap">
+                                                {/* Icons to show the tech used in this project */}
+                                                {okeefeIcons.map((logo) => (<Icon logo={logo}/>))}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {/* Right Card with Info */}
+                                    <div className="card border border-0" style={{width: "50rem"}}>
+                                        <img src={okeefeLogo} className="card-img-top align-self-center" alt="O'Keefe Ranch Logo" style={{aspectRatio: 2/1, maxWidth: 150}}/>
+                                        <div className="card-body">
+                                            <p className="card-text">
+                                                The capstone project of my CIS Diploma. My team built a daily task management system for the Historic O'Keefe Ranch. The system keeps track of tasks and who they are assigned to, as well as task status and completion dates. It also sends an email to the user whenever a task is assigned to them and generates new tasks automatically for recurring tasks
+                                            </p>
+                                            <a href="https://github.com/kevinngkaion/OkeefeProject" target="_blank" className="btn btn-info d-flex w-50 mx-auto justify-content-around">
+                                                <img src={github} alt="" height={30}/>
+                                                <span>View Source Code</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>

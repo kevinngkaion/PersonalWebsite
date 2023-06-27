@@ -1,6 +1,16 @@
 // custom variables
-$primary: #198754;
-$body-bg: #055160; // change the colour of the accordion button
+$primary: #055160;
+$secondary: #0DCAF0;
+
+$accordion-color: orange;
+$accordion-bg: lightgray;
+$accordion-button-color: white;
+$accordion-button-bg: #055160;
+$accordion-button-active-bg: #0DCAF0;
+$accordion-button-active-color: black;
+
+$card-bg: transparent;
+//$card-color: white;
 
 // import bootstrap
 @import '../node_modules/bootstrap/scss/bootstrap';

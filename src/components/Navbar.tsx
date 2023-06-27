@@ -19,16 +19,13 @@ import Resume from '../assets/KevinNgkaionResume.pdf';
             <div className="collapse navbar-collapse justify-content-end align-center" id="main-nav">
                 <ul className="navbar-nav">
                     <li className="navbar-item">
-                        <a href="#skills" className="nav-link text-info">Skills</a>
-                    </li>
-                    <li className="navbar-item">
-                        <a href="#education" className="nav-link text-info">Education</a>
+                        <a href="#projects" className="nav-link text-info">Projects</a>
                     </li>
                     <li className="navbar-item">
                         <a href="#work" className="nav-link text-info">Work Experience</a>
                     </li>
                     <li className="navbar-item">
-                        <a href="#projects" className="nav-link text-info">Projects</a>
+                        <a href="#education" className="nav-link text-info">Education</a>
                     </li>
                     <li className="navbar-item">
                         <a href={Resume} target="_blank" className="nav-link text-info">Resume</a>
