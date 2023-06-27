@@ -9,7 +9,6 @@ export default function YoutubeEmbed({embedID}: {embedID: string;}) {
             title="YouTube video player"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
-            className="mt-4"
         />
     )
 }

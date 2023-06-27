@@ -7,10 +7,10 @@ export default function Home() {
     return (
         <div className="home">
             <Navbar/>
-            {/* <AboutMe/>
-            <Skills/>
-            <Education/> */}
+            <AboutMe/>
             <WorkExperience/>
+            <Education/>
+            <Skills/>
         </div>
     )
 }
